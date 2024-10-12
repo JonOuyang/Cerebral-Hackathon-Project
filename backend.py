@@ -10,7 +10,6 @@ import pygetwindow as gw
 # load API key from hidden environment variable
 load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-model = genai.GenerativeModel('gemini-1.5-pro-002')
 retries = 0
 
 # clear terminal, works on Windows OS and MacOS
