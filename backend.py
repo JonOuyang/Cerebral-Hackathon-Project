@@ -2,10 +2,10 @@ import os
 import time
 
 from dotenv import load_dotenv
+import flask
 from google.api_core.exceptions import ResourceExhausted, InternalServerError
 import google.generativeai as genai
-from PIL import Image, ImageGrab
-import pygetwindow as gw
+from PIL import Image
 
 # load API key from hidden environment variable
 load_dotenv()
@@ -96,12 +96,14 @@ def caption_capture(language: str, imagePath: str):
 
     except ResourceExhausted as resource_error:
         print(f'You have exceeded the API call rate. Please wait a minute before trying again... \nError message from Google:\n{resource_error}')
+    
     except InternalServerError as internal_error:
         retries += 1
         time.sleep(1)
         print(f'An expected error occured on Google\'s side. Retrying after 1 second cooldown... Attempt {retries}/3')
         print(f'Error message from Google:\n{internal_error}')
         caption_capture(model_prompt)
+   
     except Exception as e:
         print(f'Unknown error encountered. \nError message from Google:\n{e}')
         if retries < 3:
