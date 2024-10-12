@@ -2,6 +2,7 @@ import os
 import time
 
 from dotenv import load_dotenv
+from flask import Flask, render_template
 from google.api_core.exceptions import ResourceExhausted, InternalServerError
 import google.generativeai as genai
 from PIL import Image, ImageGrab
@@ -93,6 +94,10 @@ def caption_capture(language: str, imagePath):
     # response = chat.send_message([image, model_prompt])
     response = chat.send_message([image, model_prompt])
     print(response.text)
+    
+    
+    return render_template('index.html', response = response);
+    
 
 
 caption_capture('english', 'testimage.png')

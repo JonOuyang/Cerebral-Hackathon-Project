@@ -23,7 +23,7 @@ else:
 # Create Gemini model
 model = genai.GenerativeModel(
     model_name = "gemini-1.5-flash-002",
-    generation_config={"response_mime_type": "application/json"},
+    #generation_config={"response_mime_type": "application/json"},
     system_instruction = f"""
         You are a language expert and tutor who finds joy in teaching others and assisting users in learning differnet languages.
         Your main objective is to teach another language to a user, providing a similar experience as Duolingo."""
@@ -51,10 +51,10 @@ def caption_capture(language: str, imagePath):
     model_prompt = f"""
         ### Instructions
 
-        You are given an image of a chrome screen. Somewhere on this screen is a video playing. Based on this screenshot of the video:
-            1. Identify where the video is.
-            2. Identify what is going on in the video and silently analyze in depth the characters and setting of the scene.
-            3. Now focus on the subtitles of the video. The subtitles within the video are most likely located at the bottom of the video, but it is possible that it is somewhere else. Find the subtitles, and output the subtitles in its original language. Use optical character recognition, do not interpret anything. Output the subtitles EXACTLY as shown.
+        You are given an image of a chrome screen. Analyze this video and look for mediums of interest. We classify mediums of interest as (youtube) videos, netflix videos, manga panels, and anything else that a user would most likely be primarily paying attention to:
+            1. Identify where the medium is. You will ONLY be focusing on this medium, ignore all other distractions. Identify and reason (silently) what the user is most likely paying attention to based off of what the page is (i.e. Youtube - youtube videos or Netflix - netflix video)
+            2. Identify what is going on in the video or image and silently analyze in depth the characters and setting of the scene.
+            3. Now focus on the subtitles or text of the video or image. The subtitles within the video are most likely located at the bottom of the video, but it is possible that it is somewhere else. Find the subtitles, and output the subtitles in its original language. Use optical character recognition, do not interpret anything. Output the subtitles EXACTLY as shown. Follow the same instructions for textual mediums like manga
             4. Now taking this text that you extracted, translate it into {language}, maintaining the SAME gramatical structure and nuances as the original text.
             5. After you have both the original text and the translated text, do the following:
                 a. Split up the original sentence by word/phrase if applicable.
@@ -109,5 +109,5 @@ def caption_capture(language: str, imagePath):
             caption_capture(language, imagePath)
         
 
-caption_capture('english', 'testimage.png')
+caption_capture('english', 'testimage2.png')
 
