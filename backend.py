@@ -32,12 +32,12 @@ model = genai.GenerativeModel(
 chat = model.start_chat(history=[], enable_automatic_function_calling=False) # start model chat history
 
 # translate
-def caption_capture(language: str, imagePath):
+def caption_capture(language: str, imagePath: str):
     """Look at current window once and only once, output a single verbal response or type out a response. This function can also look at what's currently on screen and remember information from this screen This function is not capable of taking any other actions.
         
     Args:
-    
-        image: full image screenshot, will be cropped within the backend program
+        language: the target language that you want it to be translated to
+        imagePath: path to the image as a string, will be modified later to be integrated to JS
     """
     global retries # the api sometimes dies, so retry if necessary - up to 3 retries
 
@@ -107,7 +107,6 @@ def caption_capture(language: str, imagePath):
         if retries < 3:
             print(f'Retrying... Attempt {retries+1}/3')
             caption_capture(language, imagePath)
-        
 
 caption_capture('english', 'testimage2.png')
 
