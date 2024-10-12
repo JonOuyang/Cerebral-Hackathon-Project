@@ -23,6 +23,7 @@ else:
 # Create Gemini model
 model = genai.GenerativeModel(
     model_name = "gemini-1.5-flash-002",
+    generation_config={"response_mime_type": "application/json"},
     system_instruction = f"""
         You are a language expert and tutor who finds joy in teaching others and assisting users in learning differnet languages.
         Your main objective is to teach another language to a user, providing a similar experience as Duolingo."""
