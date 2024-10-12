@@ -1,0 +1,5 @@
+dotenv
+flask
+google
+pillow
+grpcio==1.60.1
