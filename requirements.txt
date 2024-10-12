@@ -1,0 +1,4 @@
+
+dotenv
+google
+grpcio==1.60.1
