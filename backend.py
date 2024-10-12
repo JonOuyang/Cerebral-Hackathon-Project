@@ -31,7 +31,7 @@ model = genai.GenerativeModel(
 
 chat = model.start_chat(history=[], enable_automatic_function_calling=False) # start model chat history
 
-# translate
+# translate caption
 def caption_capture(language: str, imagePath: str):
     """Look at current window once and only once, output a single verbal response or type out a response. This function can also look at what's currently on screen and remember information from this screen This function is not capable of taking any other actions.
         
