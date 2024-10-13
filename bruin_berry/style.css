@@ -250,6 +250,6 @@
 .textbubble {
     position:absolute;
     display: block;
-    width: 276px;
+    width: calc(100% - 276px/3); /*276*/
     height: 122px;
 }
