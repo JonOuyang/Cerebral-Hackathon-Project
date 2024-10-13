@@ -246,3 +246,10 @@
     height: 156px;
     right: 0%;
 }
+
+.textbubble {
+    position:absolute;
+    display: block;
+    width: 76%;
+    height: 24%;
+}
