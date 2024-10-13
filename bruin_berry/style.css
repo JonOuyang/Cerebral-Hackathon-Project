@@ -2,11 +2,12 @@
 .mascot {
     position:absolute;
     display: block;
-    left: 50%;
-    width: 49%;
+    <!--left: 50%;-->
+    <!--width: 49%;-->
     top: 8px;
+    height: 155px;
 
-    transform: translate(-50%, 0%);
+    transform: translate(50%, 0%);
 }
 
 /* Rectangle 3 */
