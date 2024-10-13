@@ -2,9 +2,33 @@
 <html>
   <head>
     <title>My Sidepanel</title>
+    <script src="jquery-3.7.1.min.js"></script>
+
+    <script src="runfunction.js">
+
+      $(document).ready(function(){
+        $("button").click(function(){
+          $.ajax({url: "./testing.txt", async: true, success: function(result){
+            $("div").html(result);
+            
+            
+          }});
+        });
+      });
+      
+    </script>
+
   </head>
   <body>
-    <h1>All sites sidepanel extension</h1>
-    <p>This side panel is enabled on all sites</p>
+    <!-- function to call python script-->
+    
+    <div><h2>Let Ajax aeofuhawe </h2></div>
+
+    <button>Change Content</button>
+    <p></p>
+
   </body>
+
+  
 </html>
+
