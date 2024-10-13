@@ -37,7 +37,6 @@ const watchTopCircle = document.getElementById('watchTopCircle');
   
 async function watchFunction() {
   console.log('watchFunction')
-  alert("readFunction");
   localStorage.setItem('activeWatch', true)
   localStorage.setItem('isBerryWatching', true)
 
@@ -58,8 +57,6 @@ async function watchFunction() {
 
   async function readFunction() {
     console.log('readFunction')
-    alert("readFunction");
-
   }
 
 readingBottomCircle.addEventListener('click', readFunction);
