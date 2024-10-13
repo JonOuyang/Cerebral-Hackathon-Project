@@ -13,7 +13,13 @@
   },
   "permissions": [
     "sidePanel", 
-    "pageCapture"
+    "pageCapture",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*",
+    "<all_urls>"
   ]
   
 }

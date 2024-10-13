@@ -1,11 +1,25 @@
-async function retrieveImage(event) {
+const readingBottomCircle = document.getElementById('readingBottomCircle');
+
+async function readFunction(event) {
     event.preventDefault();  // Prevent form from reloading the page
 
-    const imageInput = document.getElementById('image');
-    const imageFile = imageInput.files[0];
+    // const imageInput = document.getElementById('image');
+    // const imageFile = imageInput.files[0];
+
+    // let imageFile;
+
+    // chrome.tabs.captureVisibleTab(null, {format: "png"}, function(dataUrl) {
+    //   imageFile = dataUrl;
+    // });
+
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      chrome.windows.update(tabs[0].windowId, { focused: true });
+    });
+
+    let imageFile = chrome.tabs.captureVisibleTab();
 
     if (!imageFile) {
-        alert("Please select an image to upload.");
+        alert("Error encountered attempting to obtain image file");
         return;
     }
 
@@ -33,6 +47,11 @@ async function retrieveImage(event) {
     }
 }
 
+readingBottomCircle.addEventListener('click', readFunction);
+
+
+
+
 const watchTopCircle = document.getElementById('watchTopCircle');
   
 async function watchFunction() {
@@ -52,11 +71,3 @@ async function watchFunction() {
 }
 
   watchTopCircle.addEventListener('click', watchFunction);
-
-  const readingBottomCircle = document.getElementById('readingBottomCircle');
-
-  async function readFunction() {
-    console.log('readFunction')
-  }
-
-readingBottomCircle.addEventListener('click', readFunction);
