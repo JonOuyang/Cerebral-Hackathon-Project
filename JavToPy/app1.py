@@ -13,11 +13,7 @@ def hello():
 def process():
     data = request.get_json() # retrieve the data sent from JavaScript
     # process the data using Python code
-    #result = data['value'] * 2
-    result = ts.translate_text(data['value'])
-    #return jsonify(result=result) # return the result to JavaScript
-    print(data)
-    print(result)
-    return jsonify(result=result)
+    result = ts.translate_text(data['value']) #actual translation
+    return jsonify(result=result) #return in js
 if __name__ == '__main__':
     app.run(debug=True)
