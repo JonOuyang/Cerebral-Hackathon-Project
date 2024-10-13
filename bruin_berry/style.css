@@ -1,12 +1,3 @@
-/* Buddy_A 1 */
-.mascot {
-    position:absolute;
-    display: block;
-    left: 50%;
-    width: 49%;
-    transform: translate(-50%, 0%);
-}
-
 /* Rectangle 3 */
 .lightBlueBlock {
     position: absolute;
@@ -17,7 +8,21 @@
     
     background: linear-gradient(0deg, #8FBEFF, #8FBEFF);
     border-radius: 50px 50px 0px 0px;
+    overflow: visible;
 }
+
+
+/* Buddy_A 1 */
+.mascot {
+    position:relative;
+    display: block;
+    left: 50%;
+    width: 49%;
+    transform: translate(-50%, 0%);
+    top: 0;
+}
+
+
 
 /* actuallogo 1 */
 .name {
