@@ -1,9 +1,9 @@
 from flask import Flask,render_template, request, jsonify
+from flask_cors import CORS
 import os
-import translators as ts #translator library
-
 
 app = Flask(__name__,template_folder="templates")
+CORS(app) #Enable CORS for all routes
 
 @app.route("/")
 def hello():

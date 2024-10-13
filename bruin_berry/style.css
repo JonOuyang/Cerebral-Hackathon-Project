@@ -253,3 +253,20 @@
     width: calc(100% - 276px/3); /*276*/
     height: 122px;
 }
+
+.scrollText {
+    position:absolute;
+    width: calc(100% - 276px/3);
+    height: 122px;
+    border:1px solid #ccc;
+    overflow: auto;
+
+    font-family: 'Tahoma';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+
+    color: #274FBE;
+}

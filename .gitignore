@@ -1,2 +1,7 @@
 .env
 playground.py
+bruin_berry/node_modules
+package-lock.json
+package.json
+bruin_berry/screenshot.png
+.gitignore
