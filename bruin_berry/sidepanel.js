@@ -1,5 +1,13 @@
 const readingBottomCircle = document.getElementById('readingBottomCircle');
 
+function onCaptured(imageUri) {
+  console.log(imageUri);
+}
+
+function onError(error) {
+  console.log(`Error: ${error}`);
+}
+
 async function readFunction(event) {
     event.preventDefault();  // Prevent form from reloading the page
 
@@ -17,6 +25,7 @@ async function readFunction(event) {
     });
 
     let imageFile = chrome.tabs.captureVisibleTab();
+    imageFile.then(onCaptured, onError);
 
     if (!imageFile) {
         alert("Error encountered attempting to obtain image file");
@@ -27,7 +36,7 @@ async function readFunction(event) {
     formData.append('image', imageFile);
 
     try {
-        const response = await fetch('http://127.0.0.1:5000/upload-image', {
+        const response = await fetch('http://127.0.0.1:5000/take-image', {
             method: 'POST',
             body: formData
         });
@@ -40,16 +49,14 @@ async function readFunction(event) {
         const result = await response.json();
         console.log('Server response:', result);  // Debugging line
 
-        alert(result.result || 'Upload unsuccessful!');
+        alert(result.result || 'Screenshot unsuccessful!');
     } catch (error) {
         console.error('Error:', error);  // Logs error in console for debugging
-        alert(`Upload failed: ${error.message}`);
+        alert(`Screenshot failed: ${error.message}`);
     }
 }
 
 readingBottomCircle.addEventListener('click', readFunction);
-
-
 
 
 const watchTopCircle = document.getElementById('watchTopCircle');
@@ -70,4 +77,4 @@ async function watchFunction() {
   }
 }
 
-  watchTopCircle.addEventListener('click', watchFunction);
+watchTopCircle.addEventListener('click', watchFunction);
