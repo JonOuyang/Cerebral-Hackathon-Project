@@ -1,8 +1,8 @@
 # Cerebral-Hackathon-Project
 
-Please see requirements.txt and run ```pip install -r requirements.txt```
+Open terminal as administrator and navigate to bruin_berry folder
 
-Open terminal and navigate to bruin_berry folder
+Run ```pip install -r requirements.txt```
 
 In terminal enter: python -m flask run
 
