@@ -1,50 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Image Upload</title>
-    <script>
-        async function uploadImage(event) {
-            event.preventDefault();  // Prevent form from reloading the page
+  <head>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <div class="lightBlueBlock"></div>
+  <img src="Buddy_A.png" class="mascot">
+  <img src="actuallogo.png" class="name">
+  <h1 class="desc">How would you like to learn today?</h1>
+  <a href="pages/watching/watching_main.html">
+      <p class="watchingStartLearningPauseLearning">watching</p>
+      <button type="button" class="topCircle"></button>
+      <img src="Monitor.png" class="monitor">
+  </a>
+  <a href="pages/reading/reading_passive.html">
+      <p class="readingMenu">reading</p>
+      <button type="button" class="bottomCircle"></button>
+      <img src="bookOpen.png" class="book">
+  </a>
+  <!--<head>
+      <meta charset="UTF-8">
+      <title>Image Upload</title>
+      <script>
+          async function uploadImage(event) {
+              event.preventDefault();  // Prevent form from reloading the page
 
-            const imageInput = document.getElementById('image');
-            const imageFile = imageInput.files[0];
+              const imageInput = document.getElementById('image');
+              const imageFile = imageInput.files[0];
 
-            if (!imageFile) {
-                alert("Please select an image to upload.");
-                return;
-            }
+              if (!imageFile) {
+                  alert("Please select an image to upload.");
+                  return;
+              }
 
-            const formData = new FormData();
-            formData.append('image', imageFile);
+              const formData = new FormData();
+              formData.append('image', imageFile);
 
-            try {
-                const response = await fetch('http://127.0.0.1:5000/upload-image', {
-                    method: 'POST',
-                    body: formData
-                });
+              try {
+                  const response = await fetch('http://127.0.0.1:5000/upload-image', {
+                      method: 'POST',
+                      body: formData
+                  });
 
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.error || 'Unknown error occurred.');
-                }
+                  if (!response.ok) {
+                      const errorData = await response.json();
+                      throw new Error(errorData.error || 'Unknown error occurred.');
+                  }
 
-                const result = await response.json();
-                console.log('Server response:', result);  // Debugging line
+                  const result = await response.json();
+                  console.log('Server response:', result);  // Debugging line
 
-                alert(result.result || 'Upload unsuccessful!');
-            } catch (error) {
-                console.error('Error:', error);  // Logs error in console for debugging
-                alert(`Upload failed: ${error.message}`);
-            }
-        }
-    </script>
-</head>
-<body>
-    <h1>Upload an Image</h1>
-    <form onsubmit="uploadImage(event)">
-        <input type="file" id="image" accept="image/*">
-        <button type="submit">Upload</button>
-    </form>
-</body>
+                  alert(result.result || 'Upload unsuccessful!');
+              } catch (error) {
+                  console.error('Error:', error);  // Logs error in console for debugging
+                  alert(`Upload failed: ${error.message}`);
+              }
+          }
+      </script>
+  </head>
+  <body>
+      <h1>Upload an Image</h1>
+      <form onsubmit="uploadImage(event)">
+          <input type="file" id="image" accept="image/*">
+          <button type="submit">Upload</button>
+      </form>
+  </body>-->
 </html>

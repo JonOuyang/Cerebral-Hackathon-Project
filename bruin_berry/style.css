@@ -1,0 +1,245 @@
+/* Buddy_A 1 */
+.mascot {
+    position:relative;
+    display: block;
+    /*left: 50%;
+    width: 49%;*/
+    height: 156px;
+    margin-left: auto;
+    margin-right: auto;
+    /*transform: translate(90px, 0%);*/
+}
+
+/* Rectangle 3 */
+.lightBlueBlock {
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 137px);
+    left: 0px;
+    top: 137px;
+    
+    background: linear-gradient(0deg, #8FBEFF, #8FBEFF);
+    border-radius: 50px 50px 0px 0px;
+}
+
+/* actuallogo 1 */
+.name {
+    position:absolute;
+    display: block;
+    left: 50%;
+    top:240px;
+    width: 70%;
+    transform: translate(-50%, -75%);
+}
+
+/* How would you like to learn today? */
+.desc {
+    position: absolute;
+    width: 250px;
+    height: 18px;
+    left: calc(50% - 250px/2);
+    top: 195px;
+
+    font-family: 'Tahoma';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 18px;
+    /* or 92% */
+    text-align: center;
+
+    color: #4655C4;
+}
+
+.watchingStartLearningPauseLearning {
+    /* watch */
+    position:absolute;
+    width: 154px;
+    height: 55px;
+    left: calc(50% - 154px/2);
+    top: 220px;
+
+    font-family: 'Tahoma';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 55px;
+    /* identical to box height, or 367% */
+    text-align: center;
+    text-transform: uppercase;
+
+    color: #274FBE;
+}
+
+.readingMenu {
+    /* read */
+    position:absolute;
+    width: 154px;
+    height: 55px;
+    left: calc(50% - 154px/2);
+    top: 330px;
+
+    font-family: 'Tahoma';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 55px;
+    /* identical to box height, or 367% */
+    text-align: center;
+    text-transform: uppercase;
+
+    color: #274FBE;
+}
+
+/* Rectangle 2 */
+.topCircle {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    left: calc(50% - 90px/2);
+    top: 270px;
+
+    background: linear-gradient(180deg, rgba(255, 249, 177, 0.79) 0%, rgba(194, 227, 29, 0.79) 100%);
+    border-radius: 50px;
+    border: 0px;
+}
+
+/* Rectangle 1 */
+.bottomCircle {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    left: calc(50% - 90px/2);
+    top: 380px;
+
+    background: linear-gradient(180deg, rgba(255, 249, 177, 0.79) 0%, rgba(194, 227, 29, 0.79) 100%);
+    border-radius: 50px;
+    border: 0px;
+
+}
+
+.monitor {
+    /* Icon */
+    position: absolute;
+    display: block;
+    left: calc(50% - 64px/2);
+    top: 280px;
+}
+
+.book {
+    /* Icon */
+    position: absolute;
+    display: block;
+    left: calc(50% - 64px/2);
+    top: 395px;
+}
+
+.arrow {
+    /* Icon */
+    position: absolute;
+    display: block;
+    left: calc(50% - 71px/2);
+    top: 390px;
+}
+
+.playTop {
+    /* Icon */
+    position: absolute;
+    display: block;
+    left: calc(50% - 54px/2);
+    top: 285px;
+}
+
+.pauseTop {
+    /* Icon */
+    position: absolute;
+    display: block;
+    left: calc(50% - 36px/2);
+    top: 290px;
+}
+
+.leftCircle {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    left: calc(25% - 90px/2);
+    top: 270px;
+
+    background: linear-gradient(180deg, rgba(255, 249, 177, 0.79) 0%, rgba(194, 227, 29, 0.79) 100%);
+    border-radius: 50px;
+    border: 0px;
+}
+
+.pauseLeft {
+    /* Icon */
+    position: absolute;
+    display: block;
+    left: calc(25% - 36px/2);
+    top: 290px;
+}
+
+.leftStartLessonPauseLesson {
+    position:absolute;
+    width: 154px;
+    height: 55px;
+    left: calc(25% - 154px/2);
+    top: 220px;
+
+    font-family: 'Tahoma';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 55px;
+    /* identical to box height, or 367% */
+    text-align: center;
+    text-transform: uppercase;
+
+    color: #274FBE;
+}
+
+.skipLesson {
+    position:absolute;
+    width: 154px;
+    height: 55px;
+    left: calc(75% - 154px/2);
+    top: 220px;
+
+    font-family: 'Tahoma';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 55px;
+    /* identical to box height, or 367% */
+    text-align: center;
+    text-transform: uppercase;
+
+    color: #274FBE;
+}
+
+.rightCircle {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    left: calc(75% - 90px/2);
+    top: 270px;
+
+    background: linear-gradient(180deg, rgba(255, 249, 177, 0.79) 0%, rgba(194, 227, 29, 0.79) 100%);
+    border-radius: 50px;
+    border: 0px;
+}
+
+.skip {
+    /* Icon */
+    position: absolute;
+    display: block;
+    left: calc(75% - 36px/2);
+    top: 295px;
+}
+
+.playLeft {
+    /* Icon */
+    position: absolute;
+    display: block;
+    left: calc(25% - 54px/2);
+    top: 285px;
+}
