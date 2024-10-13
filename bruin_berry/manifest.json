@@ -12,7 +12,8 @@
     "default_path": "sidepanel.html"
   },
   "permissions": [
-    "sidePanel" 
+    "sidePanel", 
+    "pageCapture"
   ]
   
 }
