@@ -32,11 +32,12 @@ async function retrieveImage(event) {
         alert(`Upload failed: ${error.message}`);
     }
 }
-  document.getElementById('watchTopCircle').addEventListener('click', watchFunction);
+
+const watchTopCircle = document.getElementById('watchTopCircle');
   
   async function watchFunction(event) {
     event.preventDefault();  // Prevent form from reloading the page
-    console.log('test test test')
+    console.log('watchFunction')
     localStorage.setItem('activeWatch', true)
     localStorage.setItem('isBerryWatching', true)
 
@@ -51,9 +52,14 @@ async function retrieveImage(event) {
     }
   }
 
-  document.getElementById('readingBottomCircle').addEventListener('click', readFunction);
+  watchTopCircle.addEventListener('click', watchFunction);
+
+  const readingBottomCircle = document.getElementById('readingBottomCircle');
 
   async function readFunction(event) {
+    console.log('readFunction')
     event.preventDefault();  // Prevent form from reloading the page
 
   }
+
+readingBottomCircle.addEventListener('click', readFunction);
