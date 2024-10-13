@@ -12,9 +12,7 @@ async function readFunction(event) {
     //   imageFile = dataUrl;
     // });
 
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.windows.update(tabs[0].windowId, { focused: true });
-    });
+   
 
     let imageFile = chrome.tabs.captureVisibleTab();
 
@@ -28,7 +26,7 @@ async function readFunction(event) {
 
     try {
         const response = await fetch('http://127.0.0.1:5000/upload-image', {
-            method: 'POST',
+            method: 'FETCH',
             body: formData
         });
 
