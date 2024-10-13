@@ -2,7 +2,7 @@ import os
 import time
 
 from dotenv import load_dotenv
-import flask
+from flask import Flask, request, jsonify
 from google.api_core.exceptions import ResourceExhausted, InternalServerError
 import google.generativeai as genai
 from PIL import Image
@@ -11,6 +11,20 @@ from PIL import Image
 load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 retries = 0
+
+app = Flask(__name__)
+
+@app.route('/api/some_endpoint', methods=['POST'])
+def handle_request():
+    data = request.get_json()
+    # Process the data
+    response = {'message': 'Data received successfully', 'received_data': data}
+    return jsonify(response)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
 
 # clear terminal, works on Windows OS and MacOS
 import os
@@ -31,7 +45,7 @@ model = genai.GenerativeModel(
 
 chat = model.start_chat(history=[], enable_automatic_function_calling=False) # start model chat history
 
-# translate caption
+# translate
 def caption_capture(language: str, imagePath: str):
     """Look at current window once and only once, output a single verbal response or type out a response. This function can also look at what's currently on screen and remember information from this screen This function is not capable of taking any other actions.
         
