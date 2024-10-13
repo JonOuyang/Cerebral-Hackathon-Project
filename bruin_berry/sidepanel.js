@@ -35,28 +35,30 @@ async function retrieveImage(event) {
 
 const watchTopCircle = document.getElementById('watchTopCircle');
   
-  async function watchFunction(event) {
-    console.log('watchFunction')
-    localStorage.setItem('activeWatch', true)
-    localStorage.setItem('isBerryWatching', true)
+async function watchFunction() {
+  console.log('watchFunction')
+  alert("readFunction");
+  localStorage.setItem('activeWatch', true)
+  localStorage.setItem('isBerryWatching', true)
 
-    function sleep(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    //take screenshot + analyze
-    while (localStorage.getItem('activeWatch') == true) {
-    if (localStorage.getItem('isBerryWatching') == true) { console.log('taking screenshot') }
-    await sleep(2000); // Wait for 2 seconds
-    }
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
+
+  //take screenshot + analyze
+  while (localStorage.getItem('activeWatch') == true) {
+  if (localStorage.getItem('isBerryWatching') == true) { console.log('taking screenshot') }
+  await sleep(2000); // Wait for 2 seconds
+  }
+}
 
   watchTopCircle.addEventListener('click', watchFunction);
 
   const readingBottomCircle = document.getElementById('readingBottomCircle');
 
-  async function readFunction(event) {
+  async function readFunction() {
     console.log('readFunction')
+    alert("readFunction");
 
   }
 
