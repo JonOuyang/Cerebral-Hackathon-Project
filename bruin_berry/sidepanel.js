@@ -36,7 +36,6 @@ async function retrieveImage(event) {
 const watchTopCircle = document.getElementById('watchTopCircle');
   
   async function watchFunction(event) {
-    event.preventDefault();  // Prevent form from reloading the page
     console.log('watchFunction')
     localStorage.setItem('activeWatch', true)
     localStorage.setItem('isBerryWatching', true)
@@ -58,7 +57,6 @@ const watchTopCircle = document.getElementById('watchTopCircle');
 
   async function readFunction(event) {
     console.log('readFunction')
-    event.preventDefault();  // Prevent form from reloading the page
 
   }
 
