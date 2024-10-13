@@ -27,7 +27,9 @@ chat = genai.GenerativeModel(
 @app.route('/take-image', methods=['POST'])
 def screenshot():
     screenshot = pyautogui.screenshot()
-    return jsonify({'result': caption_capture('English', screenshot)})
+    text = caption_capture('English', screenshot)
+    print(text)
+    return jsonify({'result': text})
 
 
 # @app.route('/upload-image', methods=['POST'])
@@ -71,8 +73,9 @@ def caption_capture(language, image, retries=0):
                 4. Now taking this text that you extracted, translate it into {language}, maintaining the SAME gramatical structure and nuances as the original text.
                 5. After you have both the original text and the translated text, do the following:
                     a. Split up the original sentence by word/phrase if applicable.
-                    b. For each word/phrase, print the original word in its original language followed by a dash (-), and followed by the translation of the original word/phrase in {language}. Grammatical punctuation should be appended to the end of a word/phrase and NOT separated -- do NOT analyze them unless they gave the original word a different meaning. This includes but is not limited to question marks (?), explamation points (!), periods(.), etc
-                    c. After repeating step b for every word, ONLY IF NECESSARY, begin explaining the nuances of the reltaionships between words. An example of this would be in Mandarin, where two words next to each other changes the meaning of one or another. Keep this in mind as well when giving direct translations for each word.
+                    b. For each word/phrase, print the original word in its original language followed by a dash (-) and followed by its romanization if it is a foreign language that is not able to be read by an english speaker. Do NOT romanize if not necessary. For example, spanish and french should not be romanized, but Korean and Japanese should be romanized.
+                    c. After each romanization/original word, print the original word in its original language followed by a dash (-), and followed by the translation of the original word/phrase in {language}. Grammatical punctuation should be appended to the end of a word/phrase and NOT separated -- do NOT analyze them unless they gave the original word a different meaning. This includes but is not limited to question marks (?), explamation points (!), periods(.), etc
+                    d. After repeating step a and b for every word, ONLY IF NECESSARY, begin explaining the nuances of the reltaionships between words. An example of this would be in Mandarin, where two words next to each other changes the meaning of one or another. Keep this in mind as well when giving direct translations for each word.
                     If there is no hidden meaning or nuances, then do NOT elaborate, and skip step c. For example, if the translation is direct and accurate, do NOT analyze anything.
                     
             When responding, omit all greetings and farewells. You are already well aquainted with the user, so
