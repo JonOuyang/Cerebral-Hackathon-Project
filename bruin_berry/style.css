@@ -243,3 +243,10 @@
     left: calc(25% - 54px/2);
     top: 285px;
 }
+
+.mascotRight {
+    position:absolute;
+    display: block;
+    height: 156px;
+    right: 0%;
+}
