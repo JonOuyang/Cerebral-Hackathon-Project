@@ -32,9 +32,11 @@ async function retrieveImage(event) {
         alert(`Upload failed: ${error.message}`);
     }
 }
-
+  document.getElementById('watchTopCircle').addEventListener('click', watchFunction);
+  
   async function watchFunction(event) {
     event.preventDefault();  // Prevent form from reloading the page
+    console.log('test test test')
     localStorage.setItem('activeWatch', true)
     localStorage.setItem('isBerryWatching', true)
 
@@ -42,18 +44,16 @@ async function retrieveImage(event) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    async function watchFunction() {
-      //take screenshot + analyze
-      while (localStorage.getItem('activeWatch') == true) {
-        if (localStorage.getItem('isBerryWatching') == true) { console.log('taking screenshot') }
-        await sleep(2000); // Wait for 2 seconds
-      }
-      
+    //take screenshot + analyze
+    while (localStorage.getItem('activeWatch') == true) {
+    if (localStorage.getItem('isBerryWatching') == true) { console.log('taking screenshot') }
+    await sleep(2000); // Wait for 2 seconds
     }
-
   }
 
-  async function readFunction() {
+  document.getElementById('readingBottomCircle').addEventListener('click', readFunction);
+
+  async function readFunction(event) {
     event.preventDefault();  // Prevent form from reloading the page
 
   }
