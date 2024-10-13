@@ -3,6 +3,12 @@
   "name": "Berry Tongue",
   "version": "1.0.0",
   "description": "A language learning extension.",
+  "conten_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content_script.js"]
+    }
+  ],
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
