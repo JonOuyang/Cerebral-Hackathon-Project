@@ -1,13 +1,13 @@
 /* Buddy_A 1 */
 .mascot {
-    position:absolute;
+    position:relative;
     display: block;
     /*left: 50%;
-    idth: 49%;*/
-    top: 8px;
+    width: 49%;*/
     height: 156px;
-
-    transform: translate(90px, 0%);
+    margin-left: auto;
+    margin-right: auto;
+    /*transform: translate(90px, 0%);*/
 }
 
 /* Rectangle 3 */
