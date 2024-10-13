@@ -2,12 +2,9 @@
 .mascot {
     position:relative;
     display: block;
-    /*left: 50%;
-    width: 49%;*/
     height: 156px;
     margin-left: auto;
     margin-right: auto;
-    /*transform: translate(90px, 0%);*/
 }
 
 /* Rectangle 3 */
@@ -17,7 +14,6 @@
     height: calc(100% - 137px);
     left: 0px;
     top: 137px;
-    
     background: linear-gradient(0deg, #8FBEFF, #8FBEFF);
     border-radius: 50px 50px 0px 0px;
 }
