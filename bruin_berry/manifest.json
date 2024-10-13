@@ -13,7 +13,6 @@
   },
   "permissions": [
     "sidePanel" 
-  ],
-  "Content-Security-Policy":["script-src 'unsafe-inline';"]
+  ]
   
 }

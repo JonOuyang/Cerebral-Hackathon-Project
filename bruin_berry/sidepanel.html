@@ -1,34 +1,50 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>My Sidepanel</title>
-    <script src="jquery-3.7.1.min.js"></script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Upload</title>
+    <script>
+        async function uploadImage(event) {
+            event.preventDefault();  // Prevent form from reloading the page
 
-    <script src="runfunction.js">
+            const imageInput = document.getElementById('image');
+            const imageFile = imageInput.files[0];
 
-      $(document).ready(function(){
-        $("button").click(function(){
-          $.ajax({url: "./testing.txt", async: true, success: function(result){
-            $("div").html(result);
-            
-            
-          }});
-        });
-      });
-      
+            if (!imageFile) {
+                alert("Please select an image to upload.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('image', imageFile);
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/upload-image', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Unknown error occurred.');
+                }
+
+                const result = await response.json();
+                console.log('Server response:', result);  // Debugging line
+
+                alert(result.result || 'Upload unsuccessful!');
+            } catch (error) {
+                console.error('Error:', error);  // Logs error in console for debugging
+                alert(`Upload failed: ${error.message}`);
+            }
+        }
     </script>
-
-  </head>
-  <body>
-    <!-- function to call python script-->
-    
-    <div><h2>Let Ajax aeofuhawe </h2></div>
-
-    <button>Change Content</button>
-    <p></p>
-
-  </body>
-
-  
+</head>
+<body>
+    <h1>Upload an Image</h1>
+    <form onsubmit="uploadImage(event)">
+        <input type="file" id="image" accept="image/*">
+        <button type="submit">Upload</button>
+    </form>
+</body>
 </html>
-

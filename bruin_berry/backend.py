@@ -1,62 +1,61 @@
 import os
 import time
-import sys
-import json
-
 from dotenv import load_dotenv
-import flask
-from flask import jsonify
-from google.api_core.exceptions import ResourceExhausted, InternalServerError
-import google.generativeai as genai
+from flask import Flask, jsonify, request
+from flask_cors import CORS
+from werkzeug.utils import secure_filename
 from PIL import Image
-from flask import Flask, render_template, Response, request, redirect, url_for
+import google.generativeai as genai
+from google.api_core.exceptions import ResourceExhausted, InternalServerError
+
 app = Flask(__name__)
+CORS(app) 
 
+
+load_dotenv()
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+
+
+chat = genai.GenerativeModel(
+    model_name="gemini-1.5-flash-002",
+    system_instruction=(
+        "You are a language expert translating text from images."
+    )
+).start_chat(history=[], enable_automatic_function_calling=False)
+
+
+@app.route('/upload-image', methods=['POST'])
 def translation():
-# load API key from hidden environment variable
-    load_dotenv()
-    genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-    retries = 0
+    if 'image' not in request.files:
+        return jsonify({'error': 'No image uploaded.'}), 400
 
-    # clear terminal, works on Windows OS and MacOS
-    import os
-    if os.name == 'nt':
-        _ = os.system('cls')
-    else:
-        _ = os.system('clear')
-        print('')
+    image = request.files['image']
+    if image.filename == '':
+        return jsonify({'error': 'No selected file.'}), 400
 
-    # Create Gemini model
-    model = genai.GenerativeModel(
-        model_name = "gemini-1.5-flash-002",
-        #generation_config={"response_mime_type": "application/json"},
-        system_instruction = f"""
-            You are a language expert and tutor who finds joy in teaching others and assisting users in learning differnet languages.
-            Your main objective is to teach another language to a user, providing a similar experience as Duolingo."""
+
+    filename = secure_filename(image.filename)
+    image_path = os.path.join('uploads', filename)
+    os.makedirs('uploads', exist_ok=True)
+    image.save(image_path)
+
+    response_text = caption_capture('english', image_path)
+
+
+    return jsonify({'result': response_text})
+
+
+def caption_capture(language, image_path, retries=0):
+    if retries >= 3:
+        return (
+            "An unexpected error occurred. Please try again later."
         )
 
-    chat = model.start_chat(history=[], enable_automatic_function_calling=False) # start model chat history
+    try:
 
+        with Image.open(image_path) as img:
 
-    @app.route("/call_function", methods=['POST'])
-    # translate
-    def caption_capture(language: str, imagePath: str):
-        """Look at current window once and only once, output a single verbal response or type out a response. This function can also look at what's currently on screen and remember information from this screen This function is not capable of taking any other actions.
-            
-        Args:
-            language: the target language that you want it to be translated to
-            imagePath: path to the image as a string, will be modified later to be integrated to JS
-        """
-        global retries # the api sometimes dies, so retry if necessary - up to 3 retries
-
-        if retries == 3:
-            retries = 0
-            print('An unexpected error occurred on Google\'s side.	Wait a bit and retry your request. If the issue persists after retrying, please report it using the Send feedback button in Google AI Studio.')        
-            return
-        
-        image = Image.open(imagePath)   
-        
-        model_prompt = f"""
+            model_prompt = f"""
             ### Instructions
 
             You are given an image of a chrome screen. Analyze this video and look for mediums of interest. We classify mediums of interest as (youtube) videos, netflix videos, manga panels, and anything else that a user would most likely be primarily paying attention to:
@@ -98,27 +97,15 @@ def translation():
             <analysis of nuance n>
             """
 
-        try:
-            response = chat.send_message([image, model_prompt])
-            print(response.text)
 
-        except ResourceExhausted as resource_error:
-            print(f'You have exceeded the API call rate. Please wait a minute before trying again... \nError message from Google:\n{resource_error}')
-        
-        except InternalServerError as internal_error:
-            retries += 1
-            time.sleep(1)
-            print(f'An expected error occured on Google\'s side. Retrying after 1 second cooldown... Attempt {retries}/3')
-            print(f'Error message from Google:\n{internal_error}')
-            caption_capture(model_prompt)
-    
-        except Exception as e:
-            print(f'Unknown error encountered. \nError message from Google:\n{e}')
-            if retries < 3:
-                print(f'Retrying... Attempt {retries+1}/3')
-                caption_capture(language, imagePath)
+            response = chat.send_message([img, model_prompt])
+            return response.text
 
-    caption_capture('english', 'testimage2.png')
-    #added for debugging
-    return jsonify({'result':'Hello'})
+    except (ResourceExhausted, InternalServerError) as e:
+        print(f"Error: {e}. Retrying...")
+        time.sleep(1)
+        return caption_capture(language, image_path, retries + 1)
 
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        return "An error occurred during translation."
