@@ -4,6 +4,8 @@
     display: block;
     left: 50%;
     width: 49%;
+    top: 8px;
+
     transform: translate(-50%, 0%);
 }
 
